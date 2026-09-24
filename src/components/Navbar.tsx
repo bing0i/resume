@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personal } from '../data';
 
@@ -15,6 +15,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('#home');
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -52,6 +53,26 @@ export default function Navbar() {
     };
   }, []);
 
+  const navigate = (href: string) => {
+    setOpen(false);
+    if (href.startsWith('#')) {
+      const target = document.querySelector(href);
+      if (target) {
+        requestAnimationFrame(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    }
+  };
+
+  const handleMenuLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
+    navigate(href);
+  };
+
   const activeClass = (href: string) =>
     active === href
       ? 'bg-ink-50 text-sand border-2 border-ink-50 shadow-[5px_5px_0_0_#05070f] -translate-x-1 -translate-y-1'
@@ -74,17 +95,18 @@ export default function Navbar() {
               : 'border-2 border-ink-50/80 shadow-[6px_6px_0_0_rgba(5,7,15,0.85)]'
           }`}
         >
-          <a
-            href="#home"
-            className="flex items-center gap-3 group shrink-0"
-          >
+          <a href="#home" className="flex items-center gap-3 group shrink-0">
             <motion.div
-              whileHover={{ scale: 1.08, rotate: [0, -4, 3, 0], transition: { duration: 0.5 } }}
+              whileHover={{
+                scale: 1.08,
+                rotate: [0, -4, 3, 0],
+                transition: { duration: 0.5 },
+              }}
               whileTap={{ scale: 0.95 }}
               className="relative"
             >
               <div className="absolute -inset-0.5 rounded-2xl bg-ink-50 -z-10 translate-x-0.5 translate-y-0.5" />
-              <div className="w-11 h-11 rounded-2xl bg-paper border-2 border-ink-50 overflow-hidden">
+              <div className="w-11 h-11 rounded-2xl bg-sand border-2 border-ink-50 overflow-hidden">
                 <img
                   src="./profile.png"
                   alt={personal.name}
@@ -94,8 +116,8 @@ export default function Navbar() {
               </div>
             </motion.div>
             <div className="hidden sm:block leading-tight">
-              <div className="text-xs text-ink-500 font-black uppercase tracking-[0.18em]">
-                {personal.name.split(' ')[1].toUpperCase()}.DEV
+              <div className="text-xs text-ink-500 font-black uppercase tracking-[0.16em]">
+                SSE
               </div>
               <div className="text-[15px] font-black text-ink-100 group-hover:text-accent-deep transition-colors">
                 {personal.name}
@@ -109,7 +131,7 @@ export default function Navbar() {
                 key={l.href}
                 href={l.href}
                 className={`relative px-4 py-2 rounded-xl text-sm font-black transition-all ${activeClass(
-                  l.href
+                  l.href,
                 )}`}
               >
                 <AnimatePresence>
@@ -119,7 +141,11 @@ export default function Navbar() {
                       initial={{ opacity: 0, scaleX: 0 }}
                       animate={{ opacity: 1, scaleX: 1 }}
                       exit={{ opacity: 0, scaleX: 0 }}
-                      transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 260,
+                        damping: 22,
+                      }}
                       className="absolute left-1.5 right-1.5 -bottom-2 h-1.5 rounded-full bg-accent"
                       style={{ transformOrigin: 'left center' }}
                     />
@@ -137,8 +163,19 @@ export default function Navbar() {
             className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sand text-ink-50 font-black border-2 border-ink-50 shadow-[5px_5px_0_0_#05070f] hover:shadow-[8px_8px_0_0_#05070f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all whitespace-nowrap"
           >
             Hire me
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-              <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+            >
+              <path
+                d="M5 12h14M13 5l7 7-7 7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </motion.a>
 
@@ -177,6 +214,7 @@ export default function Navbar() {
         <AnimatePresence>
           {open && (
             <motion.div
+              ref={menuRef}
               initial={{ opacity: 0, y: -14, height: 0 }}
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -14, height: 0 }}
@@ -188,9 +226,9 @@ export default function Navbar() {
                   <a
                     key={l.href}
                     href={l.href}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => handleMenuLinkClick(e, l.href)}
                     className={`px-4 py-3 rounded-xl text-sm font-black transition-all ${activeClass(
-                      l.href
+                      l.href,
                     )}`}
                   >
                     {l.label}
@@ -198,7 +236,7 @@ export default function Navbar() {
                 ))}
                 <a
                   href="#contact"
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => handleMenuLinkClick(e, '#contact')}
                   className="mt-1 px-4 py-3 rounded-xl bg-sand text-ink-50 font-black border-2 border-ink-50 shadow-[5px_5px_0_0_#05070f] text-center"
                 >
                   Hire me

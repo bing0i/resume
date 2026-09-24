@@ -48,12 +48,20 @@ export default function EducationAndAwards() {
                 initial={{ opacity: 0, y: 24, skewY: -2 }}
                 whileInView={{ opacity: 1, y: 0, skewY: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.65, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: 0.65,
+                  delay: i * 0.09,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className="group relative p-6 md:p-7 rounded-2xl border-[3px] border-ink-50 bg-paper shadow-[10px_10px_0_0_#05070f] hover:-translate-x-2 hover:-translate-y-2 hover:shadow-[16px_16px_0_0_#05070f] transition-all"
               >
                 <div className="flex items-start gap-4 mb-4">
                   <motion.div
-                    whileHover={{ rotate: [0, -8, 6, -2, 0], scale: 1.1, transition: { duration: 0.7 } }}
+                    whileHover={{
+                      rotate: [0, -8, 6, -2, 0],
+                      scale: 1.1,
+                      transition: { duration: 0.7 },
+                    }}
                     className="shrink-0 w-12 h-12 rounded-xl bg-sand border-[3px] border-ink-50 text-ink-50 flex items-center justify-center shadow-[4px_4px_0_0_#05070f]"
                   >
                     <FiBookOpen size={18} />
@@ -68,23 +76,22 @@ export default function EducationAndAwards() {
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <div className="text-[16px] font-black text-ink-200 leading-snug">
                     {ed.degree}
                   </div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-ink-50 text-sand font-black text-xs border-2 border-ink-50 shadow-[3px_3px_0_0_#d4a017] tabular-nums">
-                    {ed.period}
+                  <div className="flex flex-wrap items-center gap-3">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-ink-50 text-sand font-black text-xs border-2 border-ink-50 shadow-[3px_3px_0_0_#d4a017] tabular-nums">
+                      {ed.period}
+                    </div>
+                    {ed.detail && (
+                      <motion.div whileHover={{ scale: 1.05, x: 4 }}>
+                        <span className="inline-block px-4 py-2 rounded-lg chip text-sm">
+                          {ed.detail}
+                        </span>
+                      </motion.div>
+                    )}
                   </div>
-                  {ed.detail && (
-                    <motion.div
-                      whileHover={{ scale: 1.05, x: 4 }}
-                      className="inline-block mt-3"
-                    >
-                      <span className="inline-block px-4 py-2 rounded-lg chip text-sm">
-                        {ed.detail}
-                      </span>
-                    </motion.div>
-                  )}
                 </div>
               </motion.div>
             ))}
@@ -143,8 +150,16 @@ export default function EducationAndAwards() {
                     initial={{ opacity: 0, y: 20, skewY: -1 }}
                     whileInView={{ opacity: 1, y: 0, skewY: 0 }}
                     viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.55, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                    whileHover={{ y: -4, x: -4, transition: { duration: 0.22 } }}
+                    transition={{
+                      duration: 0.55,
+                      delay: i * 0.06,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    whileHover={{
+                      y: -4,
+                      x: -4,
+                      transition: { duration: 0.22 },
+                    }}
                     className={`group relative p-5 md:p-6 rounded-2xl overflow-hidden ${
                       a.highlight
                         ? 'bg-sand border-[3px] border-ink-50 shadow-[10px_10px_0_0_#05070f] hover:shadow-[14px_14px_0_0_#05070f]'
@@ -153,7 +168,11 @@ export default function EducationAndAwards() {
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <motion.div
-                        whileHover={{ rotate: [0, -10, 8, -3, 0], scale: 1.1, transition: { duration: 0.6 } }}
+                        whileHover={{
+                          rotate: [0, -10, 8, -3, 0],
+                          scale: 1.1,
+                          transition: { duration: 0.6 },
+                        }}
                         className={`shrink-0 w-11 h-11 rounded-xl flex items-center justify-center border-[3px] border-ink-50 shadow-[3px_3px_0_0_#05070f] ${
                           a.highlight
                             ? 'bg-ink-50 text-sand'
@@ -166,9 +185,11 @@ export default function EducationAndAwards() {
                         {a.date}
                       </div>
                     </div>
-                    <h4 className={`text-[15px] md:text-base font-black leading-snug ${
-                      a.highlight ? 'text-ink-50' : 'text-ink-50'
-                    } group-hover:text-accent-deep transition-colors`}>
+                    <h4
+                      className={`text-[15px] md:text-base font-black leading-snug ${
+                        a.highlight ? 'text-ink-50' : 'text-ink-50'
+                      } group-hover:text-accent-deep transition-colors`}
+                    >
                       {a.name}
                     </h4>
                   </motion.div>
@@ -207,7 +228,11 @@ export default function EducationAndAwards() {
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <motion.div
-                          whileHover={{ rotate: [0, -12, 10, -2, 0], scale: 1.15, transition: { duration: 0.6 } }}
+                          whileHover={{
+                            rotate: [0, -12, 10, -2, 0],
+                            scale: 1.15,
+                            transition: { duration: 0.6 },
+                          }}
                           className={`shrink-0 w-10 h-10 rounded-lg flex items-center justify-center border-[2.5px] border-ink-50 shadow-[3px_3px_0_0_#05070f] ${
                             c.highlight
                               ? 'bg-sand text-ink-50'

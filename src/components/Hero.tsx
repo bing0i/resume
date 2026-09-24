@@ -8,28 +8,75 @@ import {
   FiLinkedin,
   FiArrowDown,
   FiDownload,
+  FiCloud,
+  FiCode,
+  FiZap,
+  FiBox,
 } from 'react-icons/fi';
+import {
+  SiReact,
+  SiNodedotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiNextdotjs,
+  SiGraphql,
+  SiDocker,
+  SiKubernetes,
+  SiJest,
+  SiCypress,
+  SiPostgresql,
+  SiHtml5,
+  SiCss,
+  SiOpenjdk,
+  SiSpring,
+  SiExpress,
+  SiGooglecloud,
+  SiFirebase,
+  SiJenkins,
+  SiCircleci,
+  SiGithubactions,
+  SiFormik,
+  SiStyledcomponents,
+  SiReactquery,
+  SiTestinglibrary,
+} from 'react-icons/si';
 
 const GITHUB_URL = 'https://github.com/bing0i';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/ppttuyen/';
 
-const marqueeTags = [
-  'REACT',
-  'NODE.JS',
-  'TYPESCRIPT',
-  'AWS',
-  'AI / LLM OPS',
-  'BANKING / AML',
-  'TAILWIND',
-  'DESIGN SYSTEMS',
-  'CUSTOMER ONBOARDING',
-  'CDD / FATCA / CRSA',
-  'NEXT.JS',
-  'GRAPHQL',
-  'DOCKER',
-  'KUBERNETES',
-  'JEST / CYPRESS',
-];
+const marqueeItems = [
+  { label: 'React', Icon: SiReact, tone: 'bg-sand' },
+  { label: 'Node.js', Icon: SiNodedotjs, tone: 'bg-paper' },
+  { label: 'TypeScript', Icon: SiTypescript, tone: 'bg-sand' },
+  { label: 'AWS', Icon: FiCloud, tone: 'bg-paper' },
+  { label: 'Tailwind', Icon: SiTailwindcss, tone: 'bg-sand' },
+  { label: 'Next.js', Icon: SiNextdotjs, tone: 'bg-paper' },
+  { label: 'GraphQL', Icon: SiGraphql, tone: 'bg-sand' },
+  { label: 'Docker', Icon: SiDocker, tone: 'bg-paper' },
+  { label: 'Kubernetes', Icon: SiKubernetes, tone: 'bg-sand' },
+  { label: 'Jest', Icon: SiJest, tone: 'bg-paper' },
+  { label: 'Cypress', Icon: SiCypress, tone: 'bg-sand' },
+  { label: 'Playwright', Icon: SiTestinglibrary, tone: 'bg-paper' },
+  { label: 'PostgreSQL', Icon: SiPostgresql, tone: 'bg-sand' },
+  { label: 'HTML5', Icon: SiHtml5, tone: 'bg-paper' },
+  { label: 'CSS', Icon: SiCss, tone: 'bg-sand' },
+  { label: 'Java', Icon: SiOpenjdk, tone: 'bg-paper' },
+  { label: 'Spring', Icon: SiSpring, tone: 'bg-sand' },
+  { label: 'Express', Icon: SiExpress, tone: 'bg-paper' },
+  { label: 'Formik', Icon: SiFormik, tone: 'bg-sand' },
+  { label: 'Styled Components', Icon: SiStyledcomponents, tone: 'bg-paper' },
+  { label: 'GCP', Icon: SiGooglecloud, tone: 'bg-sand' },
+  { label: 'Firebase', Icon: SiFirebase, tone: 'bg-paper' },
+  { label: 'Jenkins', Icon: SiJenkins, tone: 'bg-sand' },
+  { label: 'CircleCI', Icon: SiCircleci, tone: 'bg-paper' },
+  { label: 'GitHub Actions', Icon: SiGithubactions, tone: 'bg-sand' },
+  { label: 'Harness', Icon: FiBox, tone: 'bg-paper' },
+  { label: 'React Query', Icon: SiReactquery, tone: 'bg-sand' },
+  { label: 'React Native', Icon: SiReact, tone: 'bg-paper' },
+  { label: 'GraphQL', Icon: FiCode, tone: 'bg-sand' },
+  { label: 'SQL', Icon: FiZap, tone: 'bg-paper' },
+  { label: 'JSP', Icon: SiHtml5, tone: 'bg-sand' },
+] as const;
 
 export default function Hero() {
   const [firstThree, last] = [
@@ -40,13 +87,17 @@ export default function Hero() {
   const stagger = (i: number) => ({
     initial: { opacity: 0, y: 24 },
     animate: { opacity: 1, y: 0 },
-    transition: { delay: 0.5 + i * 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      delay: 0.4 + i * 0.1,
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
   });
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden pt-36 pb-24"
+      className="relative min-h-screen flex items-center overflow-hidden pt-36 pb-28"
     >
       <motion.div
         aria-hidden
@@ -60,102 +111,35 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <motion.div
-        aria-hidden
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="pointer-events-none absolute left-0 top-[58%] w-full -z-0"
-      >
-        <div className="flex w-full whitespace-nowrap overflow-hidden">
-          <div className="flex gap-10 pr-10 animate-marqueeX items-center py-2 border-y-2 border-ink-50 bg-sand/90">
-            {[...marqueeTags, ...marqueeTags].map((t, i) => (
-              <span key={i} className="inline-flex items-center gap-10">
-                <span className="font-black tracking-[0.14em] text-ink-50 text-sm md:text-base">
-                  {t}
-                </span>
-                <span className="w-2 h-2 rounded-full bg-ink-50 shrink-0" />
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
       <div className="relative mx-auto w-full max-w-5xl px-6 z-10">
-        <motion.div {...stagger(0)} className="mb-6">
-          <span className="eyebrow">
-            Portfolio · 2026
+        <motion.div
+          {...stagger(0)}
+          className="mb-4 flex items-center justify-between gap-4 flex-wrap"
+        >
+          <span className="eyebrow">RESUME</span>
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border-[2.5px] border-ink-50 bg-paper text-ink-50 font-black text-xs md:text-sm shadow-[3px_3px_0_0_#05070f] tabular-nums">
+            5+ years experience
           </span>
         </motion.div>
 
-        <div className="mb-8">
-          <motion.h1
-            initial={{ opacity: 0, skewX: -10, x: -40, scale: 1.05 }}
-            animate={{ opacity: 1, skewX: 0, x: 0, scale: 1 }}
-            transition={{ delay: 0.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-black leading-[0.86] tracking-[-0.05em] text-ink-50"
-          >
-            <span className="block text-[52px] md:text-[84px] lg:text-[100px] mb-3">
-              Senior
-            </span>
-            <motion.span
-              initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
-              animate={{ opacity: 1, clipPath: 'inset(0 0 0 0)' }}
-              transition={{ delay: 0.45, duration: 0.9, ease: [0.65, 0, 0.35, 1] }}
-              className="block text-[68px] md:text-[112px] lg:text-[136px] relative"
-            >
-              <span className="relative z-10 text-sand">
-                <span className="relative z-20 text-ink-50 px-3 md:px-6 py-2">
-                  Software
-                </span>
-              </span>
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, skewY: 3, y: 20 }}
-              animate={{ opacity: 1, skewY: 0, y: 0 }}
-              transition={{ delay: 0.72, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="block text-[48px] md:text-[72px] lg:text-[88px] mt-1"
-            >
-              <span className="underline-stroke">Engineer</span>
-              <span className="cursor-blink" />
-            </motion.span>
-          </motion.h1>
+        <motion.div
+          initial={{ opacity: 0, y: 18, skewX: -4 }}
+          animate={{ opacity: 1, y: 0, skewX: 0 }}
+          transition={{ delay: 0.55, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-5"
+        >
+          <h1 className="text-[32px] md:text-[44px] lg:text-[52px] font-black tracking-[-0.03em] text-ink-50 leading-[1.05]">
+            {personal.name}
+          </h1>
+        </motion.div>
 
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: '100%' }}
-            transition={{ delay: 1, duration: 1, ease: [0.65, 0, 0.35, 1] }}
-            className="mt-6 mb-5"
-          >
-            <div className="divider-big" />
-          </motion.div>
-
-          <motion.p {...stagger(1)} className="text-[18px] md:text-[22px] lg:text-[26px] font-black text-ink-200 leading-[1.2] tracking-[-0.02em] max-w-[920px]">
-            Based in{' '}
-            <span className="bg-ink-50 text-sand px-3 py-0.5 -mx-1 rounded-lg relative inline-block">
-              Ho Chi Minh City, Vietnam
-            </span>
-            . I design and ship{' '}
-            <span className="bg-sand px-2 -mx-1 rounded border-2 border-ink-50 shadow-[3px_3px_0_0_#05070f] inline-block translate-y-[-2px] mx-1">
-              production-grade interfaces
-            </span>{' '}
-            for regulated industries.
-          </motion.p>
-        </div>
-
-        <motion.div {...stagger(2)} className="flex flex-wrap gap-2 mb-10">
-          {[
-            { label: 'Currently: NAB Vietnam', tone: 'bg-ink-50 text-sand border-ink-50' },
-            { label: 'Focus: React · Node · AI tooling', tone: 'bg-paper text-ink-50 border-ink-50' },
-            { label: 'Stack: 6 yrs · Frontend · Full-stack', tone: 'bg-sand text-ink-50 border-ink-50' },
-          ].map((b, i) => (
-            <span
-              key={i}
-              className={`px-4 py-2 rounded-lg font-black text-[13px] md:text-sm border-2 shadow-[4px_4px_0_0_#05070f] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#05070f] transition-all ${b.tone}`}
-            >
-              {b.label}
-            </span>
-          ))}
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: '100%' }}
+          transition={{ delay: 0.9, duration: 0.9, ease: [0.65, 0, 0.35, 1] }}
+          className="mb-8"
+        >
+          <div className="divider-big" />
         </motion.div>
 
         <div className="space-y-6 mb-10 max-w-[820px]">
@@ -165,7 +149,11 @@ export default function Hero() {
               initial={{ opacity: 0, x: -20, skewX: -4 }}
               whileInView={{ opacity: 1, x: 0, skewX: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.7,
+                delay: i * 0.09,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="relative pl-6 border-l-[4px] border-ink-50 text-[16.5px] md:text-lg text-ink-200 leading-[1.85] font-semibold"
             >
               {p}
@@ -173,38 +161,27 @@ export default function Hero() {
           ))}
 
           <motion.div
-            initial={{ opacity: 0, x: -30, skewX: -6 }}
+            initial={{ opacity: 0, x: -20, skewX: -2 }}
             whileInView={{ opacity: 1, x: 0, skewX: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ skewX: -1, x: 6, transition: { duration: 0.25 } }}
-            className="relative p-5 md:p-6 border-[3px] border-ink-50 bg-ink-50 shadow-[12px_12px_0_0_#d4a017] overflow-hidden"
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative p-4 md:p-5 rounded-2xl border-[3px] border-ink-50 bg-sand shadow-[6px_6px_0_0_#05070f]"
           >
-            <div
-              aria-hidden
-              className="absolute inset-0 opacity-[0.09] pointer-events-none"
-              style={{
-                backgroundImage:
-                  'linear-gradient(to right, #fde047 1px, transparent 1px), linear-gradient(to bottom, #fde047 1px, transparent 1px)',
-                backgroundSize: '24px 24px',
-              }}
-            />
-            <div className="flex items-start gap-4 relative">
-              <motion.span
-                animate={{ rotate: [0, 6, -4, 2, -1, 0], scale: [1, 1.1, 1, 1.08, 1] }}
-                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2.4 }}
-                className="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-sand border-[3px] border-ink-50 text-[26px] md:text-[30px] flex items-center justify-center shadow-[4px_4px_0_0_#05070f]"
-              >
+            <div className="flex items-center gap-3 relative">
+              <span className="shrink-0 w-9 h-9 md:w-10 md:h-10 rounded-lg bg-ink-50 text-sand text-[18px] md:text-[20px] flex items-center justify-center border-[2.5px] border-ink-50 shadow-[3px_3px_0_0_#05070f]">
                 ⚡
-              </motion.span>
-              <div className="flex-1 text-[17px] md:text-xl font-black text-sand leading-[1.45] tracking-[-0.01em] relative">
+              </span>
+              <div className="flex-1 text-[15.5px] md:text-[17px] font-black text-ink-50 leading-[1.45] tracking-[-0.01em] relative">
                 {last}
               </div>
             </div>
           </motion.div>
         </div>
 
-        <motion.div {...stagger(3)} className="flex flex-wrap gap-x-8 gap-y-3 text-[14px] md:text-[15px] text-ink-300 font-black mb-10">
+        <motion.div
+          {...stagger(3)}
+          className="flex flex-wrap gap-x-8 gap-y-3 text-[14px] md:text-[15px] text-ink-300 font-black mb-10"
+        >
           <a
             href={`mailto:${personal.email}`}
             className="inline-flex items-center gap-2 hover:text-ink-50 transition-colors group"
@@ -214,12 +191,15 @@ export default function Hero() {
             </span>
             {personal.email}
           </a>
-          <span className="inline-flex items-center gap-2">
-            <span className="w-10 h-10 rounded-lg bg-paper border-2 border-ink-50 text-accent-deep flex items-center justify-center shadow-[3px_3px_0_0_#05070f]">
+          <a
+            href={`tel:${personal.phone.replace(/\s+/g, '')}`}
+            className="inline-flex items-center gap-2 hover:text-ink-50 transition-colors group"
+          >
+            <span className="w-10 h-10 rounded-lg bg-paper border-2 border-ink-50 text-accent-deep flex items-center justify-center shadow-[3px_3px_0_0_#05070f] group-hover:bg-sand transition-colors">
               <FiPhone size={15} />
             </span>
             {personal.phone}
-          </span>
+          </a>
           <span className="inline-flex items-center gap-2">
             <span className="w-10 h-10 rounded-lg bg-paper border-2 border-ink-50 text-accent-deep flex items-center justify-center shadow-[3px_3px_0_0_#05070f]">
               <FiMapPin size={15} />
@@ -228,7 +208,10 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <motion.div {...stagger(4)} className="flex flex-wrap gap-3 items-center">
+        <motion.div
+          {...stagger(4)}
+          className="flex flex-wrap gap-3 items-center"
+        >
           <motion.a
             href="#experience"
             whileHover={{ y: -4, x: -4 }}
@@ -282,6 +265,39 @@ export default function Hero() {
             </motion.a>
           </div>
         </motion.div>
+      </div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-0 bottom-0 w-full overflow-hidden border-t-[3px] border-b-[3px] border-ink-50 bg-paper"
+      >
+        <div
+          className="flex w-max animate-marqueeX will-change-transform items-center py-3 whitespace-nowrap"
+          style={{ animation: 'marqueeX 52s linear infinite' }}
+        >
+          {[
+            ...marqueeItems,
+            ...marqueeItems,
+            ...marqueeItems,
+            ...marqueeItems,
+          ].map((t, i) => {
+            const Comp = t.Icon;
+            return (
+              <div
+                key={i}
+                className="inline-flex items-center gap-3 shrink-0 px-6"
+              >
+                <span
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl font-black tracking-[0.08em] text-[12px] md:text-[13px] border-[2.5px] border-ink-50 shadow-[4px_4px_0_0_#05070f] text-ink-50 ${t.tone}`}
+                >
+                  <Comp size={16} />
+                  {t.label}
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-ink-50 shrink-0" />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

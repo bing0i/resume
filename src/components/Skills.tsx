@@ -11,10 +11,9 @@ const catIcons: Record<string, string> = {
 
 const calloutHighlights = [
   'RAG',
-  'LLM Ops',
   'Knowledge Graph',
   '70+ Skills',
-  '50+ Users',
+  '50+ Internal Users',
 ];
 
 export default function Skills() {
@@ -140,16 +139,18 @@ export default function Skills() {
                   CUSTONBD
                 </h3>
                 <p className="text-sm font-bold text-sand/70 mt-0.5">
-                  AI-powered internal engineering toolkit
+                  Customer Onboarding skills &amp; domain RAG toolkit
                 </p>
               </div>
             </div>
             <div className="flex-1">
               <p className="text-[15px] md:text-[16px] font-bold text-sand/85 leading-[1.7] mb-4">
-                A self-built assistant my team actually uses every day. I
-                connected documentation, Confluence, and Slack knowledge into a
-                central RAG-based search, then layered in runbooks, migration
-                scripts, and LLM-assisted triage.
+                Built with senior engineers to support daily domain work. A
+                mini-RAG over customer onboarding knowledge plus a set of
+                centralised automation skills shipped as
+                &ldquo;epic-pipeline&rdquo;, the standard way the domain team
+                now plans, builds, tests, documents, and ships their day-to-day
+                work.
               </p>
               <div className="flex flex-wrap gap-2">
                 {calloutHighlights.map((h, i) => (

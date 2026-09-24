@@ -85,7 +85,7 @@ export default {
       },
       animation: {
         wiggle: 'wiggle 0.85s ease-in-out infinite',
-        marqueeX: 'marqueeX 22s linear infinite',
+        marqueeX: 'marqueeX 52s linear infinite',
         shimmerBar: 'shimmerBar 3.2s ease-in-out infinite',
         slamIn: 'slamIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both',
         slideMask: 'slideMask 1.1s cubic-bezier(0.65, 0, 0.35, 1) both',
